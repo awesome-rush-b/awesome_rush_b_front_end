@@ -52,7 +52,7 @@ jobs:
           echo '创建 codedeploy_artifact 目录'
           mkdir codedeploy_artifact
           echo '将对应 jar 包压缩'
-          zip -r ${{ env.ARTIFACT_NAME }} ./build/* ./codedeploy/*.sh ./appspec.yml
+          zip -r ${{ env.ARTIFACT_NAME }} ./awesomerushb/build/* ./codedeploy/*.sh ./appspec.yml
           ls -al
           echo '将对应压缩包 zip 放入到 codedeploy_artifact 目录'
           mv ${{ env.ARTIFACT_NAME }} codedeploy_artifact/
