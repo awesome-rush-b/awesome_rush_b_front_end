@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "******************Kill thread installed before******************"
-sudo pkill -9 java
+sudo pkill -9 node
 
 echo "******************Remove all previous files******************"
 if  [ ! -d  "/home/ubuntu/frontendCode/"  ]; then
