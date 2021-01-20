@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Build with Maven # 使用 maven 进行单元测试和 jar 包打包
+      - name: Build with npm # 使用 maven 进行单元测试和 jar 包打包
         run: | # run 后面写的内容，每一行可以理解为在 GitHub action 环境中按照顺序执行的每一行命令 这些命令的执行结果可以在 GitHub action 上看到
           echo '当前 npm 版本'
           npm --version
@@ -39,6 +39,7 @@ jobs:
           ls
 
           echo '使用 npm 进行 build 打包'
+          sudo npm install
           sudo npm run build
           echo '完成 build 打包'
 
