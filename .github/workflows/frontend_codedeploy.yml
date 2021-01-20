@@ -39,7 +39,7 @@ jobs:
           ls
 
           echo '使用 npm 进行 build 打包'
-          sudo npm build
+          sudo npm run build
           echo '完成 build 打包'
 
           pwd
