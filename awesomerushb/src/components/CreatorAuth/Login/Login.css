@@ -1,0 +1,85 @@
+.login_form{
+    position: absolute;
+    width: 324px;
+    height: 229px;
+    left: 521px;
+    top: 343px;
+}
+.loginForm_accountInput{
+    position: absolute;
+    width: 324px;
+    height: 58px;
+    left: 521px;
+    top: 343px;
+}
+.loginForm_accountInput_text{
+    position: absolute;
+    width: 76px;
+    height: 23px;
+    left: 574px;
+    top: 359px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+
+    color: rgba(28, 28, 28, 0.5);
+}
+
+.loginForm_input{
+    position: absolute;
+    width: 324px;
+    height: 58px;
+    /* left: 521px;
+    top: 343px; */
+    background: #F8F8F8;
+    border-radius: 10px;
+}
+
+.loginForm_passwordInput{
+    position: absolute;
+    width: 324px;
+    height: 58px;
+    left: 521px;
+    top: 418px;
+}
+
+.loginForm_remember{
+    position: absolute;
+    width: 110px;
+    height: 17px;
+    left: 521px;
+    top: 484px;
+}
+
+#loginForm_remember_ckb{
+    position: absolute;
+    width: 18px;
+    height: 17px;
+    left: 521px;
+    top: 484px;
+
+    border: 1px solid #1C1C1C;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.loginForm_remember_text{
+    position: absolute;
+    width: 87px;
+    height: 17px;
+    left: 544px;
+    top: 484px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    text-align: center;
+}

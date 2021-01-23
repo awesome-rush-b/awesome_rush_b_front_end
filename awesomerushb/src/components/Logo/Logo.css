@@ -1,0 +1,53 @@
+.logo{
+    position: absolute;
+    width: 221px;
+    height: 100px;
+    left: 29px;
+    top: 23px;
+}
+.logo_awe{
+    position: absolute;
+    width: 162px;
+    height: 31px;
+    left: 29px;
+    top: 53px;
+    
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 37px;
+    
+    color: #FFFFFF;    
+}
+.logo_rectangle{
+    position: absolute;
+    width: 66px;
+    height: 57px;
+    left: 29px;
+    top: 36px;
+
+    background: #1C1C1C;
+}
+.logo_slice{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 115px;
+    top: 23px;
+}
+.logo_some{
+    position: absolute;
+    width: 155px;
+    height: 31px;
+    left: 95px;
+    top: 55px;
+
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 37px;
+
+    color: #1C1C1C;
+}
