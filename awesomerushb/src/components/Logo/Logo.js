@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import React, {Component} from 'react';
 import './Logo.css';
 
@@ -5,7 +6,7 @@ class Logo extends React.Component {
     
     render() {
         return(
-            <div>
+            <Box my = {20}>
                 <div className = 'logo'>
                     <div className = 'logo_awe'>
                         Awe
@@ -18,7 +19,7 @@ class Logo extends React.Component {
                         some
                     </div>
                 </div>
-            </div>
+            </Box>
         );
     }
 }
