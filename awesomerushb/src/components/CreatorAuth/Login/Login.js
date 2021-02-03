@@ -15,11 +15,14 @@ import {
     Container,
     makeStyles
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
- 
 
-
+const jwtUrl = "http://54.234.217.249:80/api/login";
 
 class Login extends React.Component {
     constructor(props){
@@ -27,6 +30,7 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            open:false
         };
     }
 
@@ -40,31 +44,53 @@ class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.userPostFetch(this.state)
+        const user = {
+            username : this.state.username,
+            password : this.state.password
+        }
+        this.userPostFetch(user)
+        // this.getProfileFetch() 
+
     }
 
     userPostFetch = (user) => {
-        const jwtUrl = "http://54.234.217.249:80/testApi/login";
         return fetch(jwtUrl, {
             method: "POST",
             headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             },
-            // body: JSON.stringify({user})
-            body: JSON.stringify({username:"awesome", b:"test"})
+            body: JSON.stringify(user)
         })
-            .then((resp) => resp.json())
-            .then((data) => {
-                console.log(data)
+            .then((resp) => {
+                if(!resp.status.toString().startsWith("2")){
+                    console.log("111111111")
+                    this.setState({open: true})
+                    console.log(this.state.open)
+                    return Promise.reject();
+                }     
+               return resp.json()
+            }).then((data) => {
+                this.setState({open: false})
+                console.log("data", data)
                 // store the token into localStorage
-                // localStorage.setItem("token", data.token);
+                localStorage.setItem("token", data.token);
+                // To check if the token was saved successfully
+                console.log(localStorage.token);
+
+      
             })
     }
 
+    
+    handleClose = () => {
+        this.setState({open: false});
+      };
+    
 
 
     render() { 
+
         return(
             <div>
                 <Header />
@@ -125,6 +151,30 @@ class Login extends React.Component {
                         >
                             Sign In
                         </Button> 
+
+
+                        <Dialog
+                            open={this.state.open}
+                            // TransitionComponent={Transition}
+                            keepMounted
+                            onClose={this.handleClose}
+                            aria-labelledby="alert-dialog-slide-title"
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle id="alert-dialog-slide-title">{"Please provide valid username/password"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description">
+                                Your username / password is not valid, please check carefully!
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Agree
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+
+
                         <Grid container>
                             <Grid item xs>
                             <Link href="#" variant="body2">
