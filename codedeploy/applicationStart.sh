@@ -4,8 +4,7 @@
 # sudo /var/lib/cloud/instance/scripts/part-001
 
 echo "Start frontendCode "
-cd frontendCode
-sudo nohup serve -s build -l 80 >/dev/null 2>&1 &
+sudo nohup serve -s /home/ubuntu/frontendCode/build -l 80 >/dev/null 2>&1 &
 
 #echo "Start cloud watch"
 # sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/home/ubuntu/infrastructure.json
