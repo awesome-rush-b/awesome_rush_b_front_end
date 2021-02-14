@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import {withRouter} from "react-router-dom";
 import { Header } from '../../components/'
-import ImgMediaCard from './ArticleCard/ArticleCard' 
+import ArticleCard from './ArticleCard/ArticleCard' 
 import {
     Button,
     TextField,
@@ -16,33 +16,23 @@ import {
     Container,
     makeStyles
 } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const jwtToken = localStorage.token;
+// const isValidUrl = 'http://54.234.217.249:80/api/isValid'
+const getAllBlogsUrl = "http://54.234.217.249:80/api/blogs";
 
 class ArticleList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            open:false,
-            allBlogs:{}
+            // open:false,
+            allBlogs:[]
         };
     }
 
-    checkIsLogin = (jwtToken) =>{
-        console.log(jwtToken)
-        if(jwtToken==""||jwtToken==null||jwtToken==undefined){
-            this.setState({open: true})
-        }  
-    }
 
-    getAllBlogs = (token) => {
-        const getAllBlogsUrl = "http://54.234.217.249:80/api/blogs";
+    getAllBlogs = (token, getAllBlogsUrl) => {
         if (token) {
             return fetch(getAllBlogsUrl, {
                 method: "GET",
@@ -54,8 +44,8 @@ class ArticleList extends React.Component {
             })
             .then(resp => resp.json())
             .then(data => {
-                this.setState({allBlogs:data}, ()=>{
-                    console.log("all Blogs:", this.state.allBlogs)
+                this.setState({allBlogs:data.resultData}, () => {
+                    console.log(this.state.allBlogs)
                 })
             })
         }
@@ -71,36 +61,28 @@ class ArticleList extends React.Component {
     }
 
     componentDidMount () {
-        this.checkIsLogin(jwtToken);
-        this.getAllBlogs(jwtToken);
+        this.getAllBlogs(jwtToken, getAllBlogsUrl);
     }
 
+
     render() {
+
         return(
             <div>
                 <Header />
-                <h1>This is ArticleList</h1>\
-                <ImgMediaCard/>
-                <Dialog
-                    open={this.state.open}
-                    // TransitionComponent={Transition}
-                    keepMounted
-                    onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-slide-title"
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle id="alert-dialog-slide-title">{"Login Reminder"}</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                        Your login has expired, please login again!
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={this.handleSkipToLogin} color="primary">
-                        Login
-                    </Button>
-                    </DialogActions>
-                </Dialog>
+                <h1>This is ArticleList</h1>
+                {
+                    this.state.allBlogs.map((blog)=> (
+                        <ArticleCard
+                            key = {blog.blogId}
+                            title = {blog.title}
+                            content = {blog.content}
+                            createDate = {blog.createDate}
+                            modifyDate = {blog.modifyDate}
+                            hashTag = {blog.hashTag}
+                        />
+                    ))
+                }
 
             </div>
         );

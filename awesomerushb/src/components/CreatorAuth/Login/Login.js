@@ -74,7 +74,7 @@ class Login extends React.Component {
                 this.setState({open: false})
                 console.log("data", data)
                 // store the token into localStorage
-                localStorage.setItem("token", data.token);
+                localStorage.setItem("token", data.resultData.token);
                 // To check if the token was saved successfully
                 console.log(localStorage.token);
 

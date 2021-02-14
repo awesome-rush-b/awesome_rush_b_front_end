@@ -10,41 +10,61 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 700,
   },
 });
 
-export default function ImgMediaCard() {
-  const classes = useStyles();
+class ArticleCard extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            title: props.title,
+            content: props.content,
+            createDate: props.createDate,
+            modifyDate: props.modifyDate,
+            hashTag: props.hashTag
+        };
+    }
+    
 
-  return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
-  );
+    render(){
+        return (
+            <Card>
+              <CardActionArea>
+                {/* <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  height="80" 
+                  image="/static/images/cards/contemplative-reptile.jpg"
+                  title="Contemplative Reptile"
+                /> */}
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {this.state.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {this.state.content}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {this.state.createDate}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {this.state.modifyDate}
+                    </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <Button size="small" color="primary">
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
+
+          );
+    }
 }
+
+export default ArticleCard;
