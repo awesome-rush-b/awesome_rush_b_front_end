@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Header } from '../../components'
 import SearchBox from './SearchBox/SearchBox' 
+import SearchResShowCase from './SearchResShowCase/SearchResShowCase'
 import {
     Button,
     TextField,
@@ -16,7 +17,7 @@ import {
 } from '@material-ui/core';
 
 const jwtToken = localStorage.token;
-const getBlogByTitleF= "http://54.234.217.249:80/api/blog/";
+const getBlogByTitleF= "http://54.234.217.249:80/api/blog/title/";
 
 class SearchPage extends React.Component {
 
@@ -70,6 +71,7 @@ class SearchPage extends React.Component {
                     handleSearchContent = {this.handleSearchContent}
                     onClickSearch = {this.onClickSearch}
                 />
+                <SearchResShowCase/>
             </div>
         );
     }
