@@ -66,12 +66,11 @@ class ArticleList extends React.Component {
 
 
     render() {
-
         return(
             <div>
                 <Header />
                 <h1>This is ArticleList</h1>
-                {
+                {/* {
                     this.state.allBlogs.map((blog)=> (
                         <ArticleCard
                             key = {blog.blogId}
@@ -82,7 +81,10 @@ class ArticleList extends React.Component {
                             hashTag = {blog.hashTag}
                         />
                     ))
-                }
+                } */}
+                <ArticleCard
+                    ArticleData = {this.state.allBlogs}
+                />
 
             </div>
         );

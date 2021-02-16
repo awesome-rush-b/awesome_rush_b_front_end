@@ -8,8 +8,11 @@ import { Search,
          Icon
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+// import { Input, Space } from 'antd';
 
+// const { Search } = Input;
 
+// const onSearch = value => console.log(value);
 
 
 class SearchBox extends React.Component {
@@ -54,7 +57,16 @@ class SearchBox extends React.Component {
                         </Button>
                     </Segment.Inline>       
                 </Segment>
+                    {/* <Search
+                    placeholder="input search text"
+                    allowClear
+                    enterButton="Search"
+                    size="large"
+                    onChange = {this.handleChange}
+                    onSearch={this.handleClickSearch}
+                    /> */}
             </div>
+            
 
             
         );

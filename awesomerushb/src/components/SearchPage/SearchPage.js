@@ -43,7 +43,7 @@ class SearchPage extends React.Component {
             .then(resp => resp.json())
             .then(data => {
                 this.setState({blogSearchResult:data.resultData}, () => {
-                    console.log(this.state.blogSearchResult)
+                    console.log("blog search res:", this.state.blogSearchResult)
                 })
             })
         }
@@ -71,7 +71,9 @@ class SearchPage extends React.Component {
                     handleSearchContent = {this.handleSearchContent}
                     onClickSearch = {this.onClickSearch}
                 />
-                <SearchResShowCase/>
+                <SearchResShowCase
+                    blogSearchRes = {this.state.blogSearchResult}
+                />
             </div>
         );
     }
