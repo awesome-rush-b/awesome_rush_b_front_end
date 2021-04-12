@@ -36,39 +36,23 @@ class SearchBox extends React.Component {
     
     render() {
         return(
-            <div>
-                <Segment  basic placeholder>
-                    <Header icon>
-                        <Icon name='search' />
-                        Search for Articles
-                    </Header>
-                    <Segment.Inline>
-                        <Input
-                            placeholder='Search...' 
-                            onChange = {this.handleChange}
-                        />
-                        <Button animated color='black'
+            <div style={{textAlign:"center",margin:"150px 650px 100px 650px"}}>
+                <Input
+                    icon={
+                        <Icon 
+                            name='search' 
+                            inverted 
+                            circular 
+                            link
                             onClick = {this.handleClickSearch}
-                        >
-                            <Button.Content visible>Search</Button.Content>
-                            <Button.Content hidden>
-                                <Icon name='search' />
-                            </Button.Content>
-                        </Button>
-                    </Segment.Inline>       
-                </Segment>
-                    {/* <Search
-                    placeholder="input search text"
-                    allowClear
-                    enterButton="Search"
-                    size="large"
+                            />
+                    }
+                    placeholder='Start Searching'
+                    fluid
                     onChange = {this.handleChange}
-                    onSearch={this.handleClickSearch}
-                    /> */}
-            </div>
-            
+                />
 
-            
+            </div>         
         );
     }
 }

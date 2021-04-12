@@ -64,7 +64,6 @@ class Login extends React.Component {
         })
             .then((resp) => {
                 if(!resp.status.toString().startsWith("2")){
-                    console.log("111111111")
                     this.setState({open: true})
                     console.log(this.state.open)
                     return Promise.reject();

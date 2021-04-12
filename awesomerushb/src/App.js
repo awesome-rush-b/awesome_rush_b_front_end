@@ -22,7 +22,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const jwtToken = localStorage.token;
-const isValidUrl = 'http://54.234.217.249:80/api/isValid'
+const isValidUrl = 'http://dev.awesomerushb.com/api/isValid'
 
 
 class App extends React.Component {

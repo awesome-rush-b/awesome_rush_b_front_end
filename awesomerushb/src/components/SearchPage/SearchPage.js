@@ -71,9 +71,24 @@ class SearchPage extends React.Component {
                     handleSearchContent = {this.handleSearchContent}
                     onClickSearch = {this.onClickSearch}
                 />
-                <SearchResShowCase
-                    blogSearchRes = {this.state.blogSearchResult}
-                />
+                <div style={{margin:"80px 500px"}}>
+                    {
+                        this.state.blogSearchResult.length !== 0 ? 
+                        this.state.blogSearchResult.map((blog)=> (
+                            <SearchResShowCase
+                                key = {blog.blogId}
+                                title = {blog.title}
+                                content = {blog.content}
+                                createDate = {blog.createDate}
+                                modifyDate = {blog.modifyDate}
+                                hashTag = {blog.hashTag}
+                            />
+                        )) : 
+                        <div style = {{textAlign:"center"}}>
+                            <span style={{fontSize:"20px", fontFamily:"fantasy"}}>Awesome Blogs start here!</span>
+                        </div>
+                    }
+                </div>
             </div>
         );
     }

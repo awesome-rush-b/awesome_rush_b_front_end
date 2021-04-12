@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import 'antd/dist/antd.css';
-import { List, Avatar, Space, Row, Col } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'; 
+import { 
+    Button, 
+    Icon, 
+    Image, 
+    Item, 
+    Label,
+    Divider
+  } from 'semantic-ui-react'
+  import 'semantic-ui-css/semantic.min.css'
 
-
-const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
 
 class SearchResShowCase extends React.Component {
     constructor(props){
@@ -21,45 +20,33 @@ class SearchResShowCase extends React.Component {
     
     render() {
         return(
-            <Row>
-            <Col span={12} offset={6}>
-                <List
-                itemLayout="vertical"
-                size="large"
-                pagination={{
-                    onChange: page => {
-                    console.log(page);
-                    },
-                    pageSize: 3,
-                }}
-                dataSource={this.props.blogSearchRes}
-                renderItem={item => (
-                    <List.Item
-                    key={item.title}
-                    actions={[
-                        <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                        <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                        <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-                    ]}
-                    extra={
-                        <img
-                        width={272}
-                        alt="logo"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                        />
-                    }
-                    >
-                    <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={item.href}>{item.title}</a>}
-                        // description={item.description}
-                    />
-                    {item.content}
-                    </List.Item>
-                )}
-                />
-            </Col>
-          </Row>  
+            <div>
+              <Item.Group>
+                <Item>
+                  <Item.Image src='https://markpersonal.oss-us-east-1.aliyuncs.com/pic/20210319110853.png'/>
+
+                  <Item.Content>
+                    <Item.Header as='a'>{this.props.title}</Item.Header>
+                    <Item.Meta>
+                      <span className='cinema'>{this.props.createDate}</span>
+                      <span/>
+                      <span className='cinema'>{this.props.modifyDate}</span>
+                    </Item.Meta>
+                    <Item.Description>
+                      <div style={{height:'105px'}}>
+                        {this.props.content}
+                      </div>
+                    </Item.Description>
+                    <Item.Extra>
+                      <Label icon = 'thumbs up outline' content='25'/>
+                      <Label icon='thumbs down outline' content='4' />
+                    </Item.Extra>
+                  </Item.Content>
+                </Item>
+              </Item.Group>
+              <div style = {{marginBottom:"50px"}}></div>
+
+          </div>
         );
     }
 }
