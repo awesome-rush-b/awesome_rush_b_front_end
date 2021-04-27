@@ -20,6 +20,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import routes from '../../../router/router';
 
 
 const jwtUrl = "http://54.234.217.249:80/api/login";
@@ -92,7 +93,7 @@ class Login extends React.Component {
 
         return(
             <div>
-                <Header />
+                {/* <Header sections={routes}/> */}
                 <Logo />
 
                 <Container component="main" maxWidth="xs">

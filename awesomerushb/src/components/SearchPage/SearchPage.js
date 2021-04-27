@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Header } from '../../components'
-import SearchBox from './SearchBox/SearchBox' 
+import SearchBox from './SearchBox/SearchBox'
 import SearchResShowCase from './SearchResShowCase/SearchResShowCase'
 import {
     Button,
@@ -17,15 +17,15 @@ import {
 } from '@material-ui/core';
 
 const jwtToken = localStorage.token;
-const getBlogByTitleF= "http://54.234.217.249:80/api/blog/title/";
+const getBlogByTitleF = "http://54.234.217.249:80/api/blog/title/";
 
 class SearchPage extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            searchContent:'',
-            blogSearchResult:[]
+            searchContent: '',
+            blogSearchResult: []
 
         };
     }
@@ -40,18 +40,18 @@ class SearchPage extends React.Component {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            .then(resp => resp.json())
-            .then(data => {
-                this.setState({blogSearchResult:data.resultData}, () => {
-                    console.log("blog search res:", this.state.blogSearchResult)
+                .then(resp => resp.json())
+                .then(data => {
+                    this.setState({ blogSearchResult: data.resultData }, () => {
+                        console.log("blog search res:", this.state.blogSearchResult)
+                    })
                 })
-            })
         }
     }
 
     handleSearchContent = (searchContent) => {
-        this.setState({searchContent: searchContent}, ()=>{
-            console.log(" state search content", this.state.searchContent) 
+        this.setState({ searchContent: searchContent }, () => {
+            console.log(" state search content", this.state.searchContent)
         })
     }
 
@@ -62,34 +62,40 @@ class SearchPage extends React.Component {
         this.SearchBlogByTitle(jwtToken, SearchBlogsUrl)
 
     }
-    
+
     render() {
-        return(
-            <div>
-                <Header />
-                <SearchBox
-                    handleSearchContent = {this.handleSearchContent}
-                    onClickSearch = {this.onClickSearch}
-                />
-                <div style={{margin:"80px 500px"}}>
-                    {
-                        this.state.blogSearchResult.length !== 0 ? 
-                        this.state.blogSearchResult.map((blog)=> (
-                            <SearchResShowCase
-                                key = {blog.blogId}
-                                title = {blog.title}
-                                content = {blog.content}
-                                createDate = {blog.createDate}
-                                modifyDate = {blog.modifyDate}
-                                hashTag = {blog.hashTag}
-                            />
-                        )) : 
-                        <div style = {{textAlign:"center"}}>
-                            <span style={{fontSize:"20px", fontFamily:"fantasy"}}>Awesome Blogs start here!</span>
+        return (
+            <React.Fragment>
+                <Container maxWidth='lg'>
+                    <div>
+                        <Header />
+                        <SearchBox
+                            handleSearchContent={this.handleSearchContent}
+                            onClickSearch={this.onClickSearch}
+                        />
+                        <div style={{ margin: "80px" }}>
+                            {
+                                this.state.blogSearchResult.length !== 0 ?
+                                    this.state.blogSearchResult.map((blog) => (
+                                        <SearchResShowCase
+                                            key={blog.blogId}
+                                            title={blog.title}
+                                            content={blog.content}
+                                            createDate={blog.createDate}
+                                            modifyDate={blog.modifyDate}
+                                            hashTag={blog.hashTag}
+                                        />
+                                    )):
+                                    <div style={{ textAlign: "center" }}>
+                                        <span style={{ fontSize: "20px", fontFamily: "fantasy" }}>Awesome Blogs start here!</span>
+                                    </div>
+                            }
                         </div>
-                    }
-                </div>
-            </div>
+                    </div>
+                </Container>
+            </React.Fragment>
+
+
         );
     }
 }

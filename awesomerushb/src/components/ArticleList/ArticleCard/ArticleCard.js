@@ -29,7 +29,7 @@ class ArticleCard extends React.Component {
 
   render() {
     return (
-      <div style={{ alignItems: 'center', margin: "90px 500px" }}>
+      <div style={{ alignItems: 'center', margin: "90px" }}>
         <Item.Group>
           <Item>
             <Item.Image src='https://markpersonal.oss-us-east-1.aliyuncs.com/pic/20210319110853.png' />

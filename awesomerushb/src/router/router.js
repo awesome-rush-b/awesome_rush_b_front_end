@@ -12,21 +12,27 @@
 import { MainPage, ArticleList, Login, Register, Dashboard, SearchPage } from '../components/loadComponent';
 
 const routes = [{
+    title:'Main Page',
     path: '/mainPage',
     component: MainPage
 },{
+    title:'Article List',
     path: '/articleList',
     component: ArticleList
 },{
+    title:'Login',
     path: '/login',
     component: Login
 },{
+    title:'Register',
     path: '/register',
     component: Register
 },{
+    title:'Dashboard',
     path: '/dashboard',
     component: Dashboard
 },{
+    title:'Search Page',
     path: '/searchPage',
     component: SearchPage
 }];
