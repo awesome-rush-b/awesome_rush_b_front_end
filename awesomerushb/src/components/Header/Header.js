@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 
 import React, { Component } from 'react';
+import FirstEntryAnimation from '../FirstEntryAnimation/FirstEntryAnimation';
 
 
 const useStyles = makeStyles((theme) => ({

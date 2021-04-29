@@ -5,6 +5,7 @@ import ArticleCard from '../ArticleList/ArticleCard/ArticleCard'
 import routes from '../../router/router';
 import { Container } from '@material-ui/core';
 import Footer from '../Footer/Footer';
+import FirstEntryAnimation from '../FirstEntryAnimation/FirstEntryAnimation';
 
 
 const getAllBlogsUrl = "http://dev.awesomerushb.com/api/blogs";
@@ -41,6 +42,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <FirstEntryAnimation />
                 <Container maxWidth='lg'>
                     <div>
                         <Header />
@@ -59,7 +61,7 @@ class MainPage extends React.Component {
                                 ))
                             }
                         </div>
-                        <Footer/>
+                        <Footer />
                     </div>
                 </Container>
 

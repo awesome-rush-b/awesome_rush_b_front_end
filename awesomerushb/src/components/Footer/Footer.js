@@ -6,6 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+
+
+/**
+ *
+ * @description 返回 Copyright 的 Typography 文字铸排
+ * @return {*} 
+ */
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -21,6 +28,8 @@ function Copyright() {
     );
 }
 
+
+/** @description material-ui 的样式表单，通过 hook 的方式定义组件 classname */
 const useStyles = makeStyles((theme) => ({
     footer: {
         backgroundColor: theme.palette.background.paper,
@@ -29,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+/**
+ *
+ * @description Footer 组件
+ * @export
+ * @param 此组件无需参数输入
+ * @return {*} 
+ */
 export default function Footer(props) {
     const classes = useStyles();
 
@@ -51,6 +68,7 @@ export default function Footer(props) {
         </footer>
     );
 }
+
 
 Footer.propTypes = {
     description: PropTypes.string,
