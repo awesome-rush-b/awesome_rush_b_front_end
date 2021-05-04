@@ -17,6 +17,7 @@ import {
     createMuiTheme,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import routes from '../../../router/router';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     return (
         <div>
             <div>
-                <Header/>
+                {/* <Header sections={routes}/> */}
             </div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

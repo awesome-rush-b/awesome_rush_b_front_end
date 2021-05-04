@@ -36,7 +36,7 @@ class SearchBox extends React.Component {
     
     render() {
         return(
-            <div style={{textAlign:"center",margin:"150px 650px 100px 650px"}}>
+            <div style={{textAlign:"center",margin:"150px 100px"}}>
                 <Input
                     icon={
                         <Icon 

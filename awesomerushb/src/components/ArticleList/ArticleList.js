@@ -17,6 +17,7 @@ import {
     Container,
     makeStyles
 } from '@material-ui/core';
+import Footer from '../Footer/Footer'
 
 
 const getAllBlogsUrl = "http://dev.awesomerushb.com/api/blogs";
@@ -73,35 +74,38 @@ class ArticleList extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <h1>This is ArticleList</h1>
+            <React.Fragment>
+                <Container maxWidth="lg">
+                    <div>
+                        <Header />
+                        <h1>This is ArticleList</h1>
 
-                {
-                    this.state.isDetailed ? (
-                        <ArticleDetail
-                            curBlogId={this.state.curBlogId}
-                            allBlogs={this.state.allBlogs}
-                        />
-                    ) : (
-                        this.state.allBlogs.map((blog) => (
-                            <ArticleCard
-                                hashTag={blog.hashTag}
-                                blogId={blog.blogId}
-                                title={blog.title}
-                                content={blog.content}
-                                createDate={blog.createDate}
-                                modifyDate={blog.modifyDate}
-                                hashTag={blog.hashTag}
-                                handleArticleDetailShow={this.handleArticleDetailShow}
-                            />
-                        ))
-                    )
+                        {
+                            this.state.isDetailed ? (
+                                <ArticleDetail
+                                    curBlogId={this.state.curBlogId}
+                                />
+                            ) : (
+                                this.state.allBlogs.map((blog) => (
+                                    <ArticleCard
+                                        blogId={blog.blogId}
+                                        title={blog.title}
+                                        content={blog.content}
+                                        createDate={blog.createDate}
+                                        modifyDate={blog.modifyDate}
+                                        hashTag={blog.hashTag}
+                                        handleArticleDetailShow={this.handleArticleDetailShow}
+                                    />
+                                ))
+                            )
 
-                }
+                        }
+                        <Footer />
+                    </div>
 
+                </Container>
+            </React.Fragment>
 
-            </div>
         );
     }
 }
