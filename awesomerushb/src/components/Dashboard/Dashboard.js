@@ -1,26 +1,19 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart } from 'victory';
+import React from 'react';
 import {
-    Checkbox,
-    Grid,
-    Icon,
-    Image,
-    Segment,
+    Icon
 } from 'semantic-ui-react'
-import { Header } from '../../components'
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SidebarHeader } from 'react-pro-sidebar';
 import './Dashboard.css'
 import 'react-pro-sidebar/dist/css/styles.css';
 import Editor from './Editor';
 import 'semantic-ui-css/semantic.min.css'
 
-const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
-];
+// const data = [
+//     { quarter: 1, earnings: 13000 },
+//     { quarter: 2, earnings: 16500 },
+//     { quarter: 3, earnings: 14250 },
+//     { quarter: 4, earnings: 19000 }
+// ];
 
 class Dashboard extends React.Component {
     constructor(props) {

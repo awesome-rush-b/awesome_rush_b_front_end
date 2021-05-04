@@ -1,11 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { 
-    Button, 
-    Icon, 
-    Image, 
     Item, 
-    Label,
-    Divider
+    Label
   } from 'semantic-ui-react'
   import 'semantic-ui-css/semantic.min.css'
 

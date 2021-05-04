@@ -6,7 +6,6 @@ import Markdown from 'braft-extensions/dist/markdown'
 import 'braft-extensions/dist/code-highlighter.css'
 import 'prismjs/components/prism-java'
 import './Dashboard.css'
-import { Button } from '@material-ui/core'
 
 
 const optionsCodeHighlighter = {

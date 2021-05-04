@@ -1,11 +1,7 @@
-import React, {Component} from 'react';
-import { Search,
-         Input, 
-         Header, 
-         Segment, 
-         Dropdown,
-         Button,
-         Icon
+import React from 'react';
+import {
+    Input,
+    Icon
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 // import { Input, Space } from 'antd';
@@ -16,43 +12,43 @@ import 'semantic-ui-css/semantic.min.css'
 
 
 class SearchBox extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             // searchContent: this.props.searchContent
         };
     }
 
-    
+
     handleChange = (e) => {
         this.props.handleSearchContent(e.target.value)
     }
 
     handleClickSearch = () => {
         this.props.onClickSearch()
-        
+
     }
 
-    
+
     render() {
-        return(
-            <div style={{textAlign:"center",margin:"150px 100px"}}>
+        return (
+            <div style={{ textAlign: "center", margin: "150px 100px" }}>
                 <Input
                     icon={
-                        <Icon 
-                            name='search' 
-                            inverted 
-                            circular 
+                        <Icon
+                            name='search'
+                            inverted
+                            circular
                             link
-                            onClick = {this.handleClickSearch}
-                            />
+                            onClick={this.handleClickSearch}
+                        />
                     }
                     placeholder='Start Searching'
                     fluid
-                    onChange = {this.handleChange}
+                    onChange={this.handleChange}
                 />
 
-            </div>         
+            </div>
         );
     }
 }

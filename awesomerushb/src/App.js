@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from './router/router';
 import {
-  Button,
-  TextField,
-  Avatar,
-  CssBaseline,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  Grid,
-  Typography,
-  Container,
-  makeStyles
+  Button
 } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FirstEntryAnimation from './components/FirstEntryAnimation/FirstEntryAnimation';
 
 
 const jwtToken = localStorage.token;

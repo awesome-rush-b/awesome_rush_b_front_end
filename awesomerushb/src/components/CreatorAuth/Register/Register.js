@@ -1,8 +1,5 @@
-import React, {Component} from 'react';
-import { Header } from '../../../components' 
-import Logo from '../../Logo/Logo';
+import React from 'react';
 import {
-    Avatar,
     Button,
     CssBaseline,
     TextField,
@@ -10,14 +7,10 @@ import {
     Checkbox,
     Link,
     Grid,
-    Box,
     Typography,
     makeStyles,
     Container,
-    createMuiTheme,
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import routes from '../../../router/router';
 
 const useStyles = makeStyles((theme) => ({
     paper: {

@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
-import { Header } from '../../../components' ;
+import React from 'react';
 import Logo from '../../Logo/Logo';
 import './Login.css';
 import {
     Button,
     TextField,
-    Avatar,
     CssBaseline,
     FormControlLabel,
     Checkbox,
@@ -13,14 +11,12 @@ import {
     Grid,
     Typography,
     Container,
-    makeStyles
 } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import routes from '../../../router/router';
 
 
 const jwtUrl = "http://54.234.217.249:80/api/login";
