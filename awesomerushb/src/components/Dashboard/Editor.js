@@ -6,8 +6,11 @@ import Markdown from 'braft-extensions/dist/markdown'
 import 'braft-extensions/dist/code-highlighter.css'
 import 'prismjs/components/prism-java'
 import './Dashboard.css'
-import { Button } from '@material-ui/core'
+import { Button, jssPreset } from '@material-ui/core'
+import { Dropdown, Input } from 'semantic-ui-react'
 
+const getAllTagsUrl = 'http://dev.awesomerushb.com/api/tags';
+const jwtToken = localStorage.token;
 
 const optionsCodeHighlighter = {
     syntaxs: [
@@ -27,6 +30,14 @@ const optionsCodeHighlighter = {
     ]
 }
 
+// const options = [
+//     { key: 'English', text: 'English', value: 'English' },
+//     { key: 'French', text: 'French', value: 'French' },
+//     { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
+//     { key: 'German', text: 'German', value: 'German' },
+//     { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
+// ]
+
 const optionsMarkdown = {
     includeEditors: ['editor-id-1'], // 指定该模块对哪些BraftEditor生效，不传此属性则对所有BraftEditor有效
     excludeEditors: ['editor-id-2']  // 指定该模块对哪些BraftEditor无效
@@ -37,24 +48,75 @@ BraftEditor.use(CodeHighlighter(optionsCodeHighlighter), Markdown(optionsMarkdow
 
 export default class Editor extends React.Component {
 
-    state = {
-        editorState: BraftEditor.createEditorState(),
-        outputHTML: '<p></p>'
+    constructor(props) {
+        super(props);
+        this.state = {
+            editorState: BraftEditor.createEditorState(),
+            context: '<p></p>',
+            currentValues: [],
+            title: null
+        };
     }
 
-    componentDidMount() {
+
+    async componentDidMount() {
+        // let tags = await this.props.getAllTags(jwtToken, getAllTagsUrl);
+        // this.preTagOption(tags)
+        this.getAllTags(jwtToken, getAllTagsUrl);
         this.isLivinig = true
         setTimeout(this.setEditorContentAsync, 3000)
+
     }
 
     componentWillUnmount() {
         this.isLivinig = false
     }
+    getAllTags = (token, getAllTagsUrl) => {
+        if (token) {
+            return fetch(getAllTagsUrl, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    // this.setState({ allTags: data.resultData })
+                    // return data.resultData;
+                    this.preTagOption(data.resultData);
+                })
+        }
+    }
+    preTagOption = (tags) => {
+        const tagOptions = tags.map((tag) => ({
+            'key': tag.name,
+            'text': tag.name,
+            'value': tag.tagId
+        }))
+        console.log(tagOptions);
 
-    handleChange = (editorState) => {
+        this.setState({ currentValues: tagOptions }, () => {
+            console.log(this.state.currentValues)
+        })
+    }
+
+    handleAddition = (e, { value }) => {
+        this.setState((prevState) => ({
+            options: [{ text: value, value }, ...prevState.options],
+        }))
+    }
+    handleTitleChange = (e, { value }) => {
+        this.setState({ title: value })
+    }
+
+    handleHashTagChange = (e, { value }) => this.setState({ currentValues: value })
+
+    handleEidtorChange = (editorState) => {
         this.setState({
             editorState: editorState,
-            outputHTML: editorState.toHTML()
+            context: editorState.toHTML()
         })
     }
 
@@ -136,25 +198,47 @@ export default class Editor extends React.Component {
 
     render() {
 
-        const { editorState, outputHTML } = this.state
+        const { editorState, context, currentValues, title } = this.state
         const excludeControls = ['media', 'fullscreen']
 
         return (
-            <div className='editor'>
-                <div className="editor-wrapper">
-                    <BraftEditor
-                        id="editor-with-code-highlighter"
-                        value={editorState}
-                        onChange={this.handleChange}
-                        language='en'
-                        excludeControls={excludeControls}
-                        placeholder='please text here'
-
+            <div>
+                <div className='title'>
+                    <Input transparent fluid size='huge' placeholder='Text your title' onChange={this.handleTitleChange} />
+                    <br />
+                    <Dropdown
+                        options={this.state.options}
+                        placeholder='Choose HashTage'
+                        search
+                        selection
+                        fluid
+                        multiple
+                        allowAdditions
+                        value={currentValues}
+                        onAddItem={this.handleAddition}
+                        onChange={this.handleHashTagChange}
                     />
                 </div>
-                {/* <h5>Test Output</h5>
-                <div className="output-content">{outputHTML}</div> */}
+                <div className='editor'>
+                    <div className="editor-wrapper">
+                        <BraftEditor
+                            id="editor-with-code-highlighter"
+                            value={editorState}
+                            onChange={this.handleEidtorChange}
+                            language='en'
+                            excludeControls={excludeControls}
+                            placeholder='please text here'
+
+                        />
+                    </div>
+                </div>
+                <h5>Test Output</h5>
+                <div className="output-content">{title}</div>
+                <div className="output-content">{currentValues}</div>
+                <div className="output-content">{context}</div>
+
             </div>
+
         )
 
     }

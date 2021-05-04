@@ -45,9 +45,7 @@ class ArticleList extends React.Component {
         })
             .then(resp => resp.json())
             .then(data => {
-                this.setState({ allBlogs: data.resultData }, () => {
-                    console.log(this.state.allBlogs)
-                })
+                this.setState({ allBlogs: data.resultData })
             })
     }
 
@@ -67,7 +65,6 @@ class ArticleList extends React.Component {
         });
     }
 
-
     componentDidMount() {
         this.getAllBlogs(getAllBlogsUrl);
     }
@@ -84,10 +81,12 @@ class ArticleList extends React.Component {
                     this.state.isDetailed ? (
                         <ArticleDetail
                             curBlogId={this.state.curBlogId}
+                            allBlogs={this.state.allBlogs}
                         />
                     ) : (
                         this.state.allBlogs.map((blog) => (
                             <ArticleCard
+                                hashTag={blog.hashTag}
                                 blogId={blog.blogId}
                                 title={blog.title}
                                 content={blog.content}

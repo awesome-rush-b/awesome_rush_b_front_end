@@ -15,6 +15,10 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import Editor from './Editor';
 import 'semantic-ui-css/semantic.min.css'
 
+const getAllTagsUrl = 'http://dev.awesomerushb.com/api/tags';
+const jwtToken = localStorage.token;
+
+
 const data = [
     { quarter: 1, earnings: 13000 },
     { quarter: 2, earnings: 16500 },
@@ -26,8 +30,13 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 1
+            type: 1,
+            alltags: []
         };
+    }
+
+    componentDidMount() {
+        this.getAllTags(jwtToken, getAllTagsUrl)
     }
 
     handleItemClick = (e, value) => {
@@ -35,6 +44,42 @@ class Dashboard extends React.Component {
             console.log(this.state.type);
 
         });
+    }
+
+    getAllTags = (token, getAllTagsUrl) => {
+        if (token) {
+            return fetch(getAllTagsUrl, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    this.setState({ allTags: data.resultData })
+                    return data.resultData;
+                })
+        }
+    }
+
+
+    SearchBlogByTitle = (token, SearchBlogsUrl) => {
+        if (token) {
+            return fetch(SearchBlogsUrl, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    this.setState({ blogSearchResult: data.resultData })
+                })
+        }
     }
 
     render() {
@@ -68,6 +113,7 @@ class Dashboard extends React.Component {
                     </ProSidebar>
                 </div>
                 <div className='main' >
+                    <Header />
 
                     {/* Overview Page */}
 
@@ -78,7 +124,9 @@ class Dashboard extends React.Component {
                     )}
                     {this.state.type === 2 && (
                         <div>
-                            <Editor />
+                            <Editor
+                                getAllTags={this.getAllTags}
+                            />
                         </div>
                     )}
                     {this.state.type === 3 && (
