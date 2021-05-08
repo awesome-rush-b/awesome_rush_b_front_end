@@ -1,20 +1,14 @@
-import { createMedia } from '@artsy/fresnel'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import { createMedia } from "@artsy/fresnel";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import {
-  Button,
   Container,
-  Divider,
   Grid,
   Header,
-  Icon,
-  Image,
-  List,
-  Menu,
   Segment,
   Sidebar,
   Visibility,
-} from 'semantic-ui-react'
+} from "semantic-ui-react";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -22,7 +16,7 @@ const { MediaContextProvider, Media } = createMedia({
     tablet: 768,
     computer: 1024,
   },
-})
+});
 
 /* Heads up!
  * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
@@ -31,49 +25,49 @@ const { MediaContextProvider, Media } = createMedia({
 const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
-      as='h1'
-      content='Awesome Blog'
+      as="h1"
+      content="Awesome Blog"
       inverted
       style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
+        fontSize: mobile ? "2em" : "4em",
+        fontWeight: "normal",
         marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '4em',
+        marginTop: mobile ? "1.5em" : "4em",
       }}
     />
     <Header
-      as='h2'
-      content='Awe! some Blogs?'
+      as="h2"
+      content="Awe! some Blogs?"
       inverted
       style={{
-        fontSize: mobile ? '1em' : '1.2em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
+        fontSize: mobile ? "1em" : "1.2em",
+        fontWeight: "normal",
+        marginTop: mobile ? "0.5em" : "1.5em",
       }}
     />
   </Container>
-)
+);
 
 HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
-}
+};
 
 /* Heads up!
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
  * It can be more complicated, but you can create really flexible markup.
  */
 class DesktopContainer extends Component {
-  state = {}
+  state = {};
 
-  hideFixedMenu = () => this.setState({ fixed: false })
-  showFixedMenu = () => this.setState({ fixed: true })
+  hideFixedMenu = () => this.setState({ fixed: false });
+  showFixedMenu = () => this.setState({ fixed: true });
 
   render() {
-    const { children } = this.props
-    const { fixed } = this.state
+    const { children } = this.props;
+    const { fixed } = this.state;
 
     return (
-      <Media greaterThan='mobile'>
+      <Media greaterThan="mobile">
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -81,8 +75,8 @@ class DesktopContainer extends Component {
         >
           <Segment
             inverted
-            textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            textAlign="center"
+            style={{ minHeight: 700, padding: "1em 0em" }}
             vertical
           >
             <HomepageHeading />
@@ -91,33 +85,33 @@ class DesktopContainer extends Component {
 
         {children}
       </Media>
-    )
+    );
   }
 }
 
 DesktopContainer.propTypes = {
   children: PropTypes.node,
-}
+};
 
 class MobileContainer extends Component {
-  state = {}
+  state = {};
 
-  handleSidebarHide = () => this.setState({ sidebarOpened: false })
+  handleSidebarHide = () => this.setState({ sidebarOpened: false });
 
-  handleToggle = () => this.setState({ sidebarOpened: true })
+  handleToggle = () => this.setState({ sidebarOpened: true });
 
   render() {
-    const { children } = this.props
-    const { sidebarOpened } = this.state
+    const { children } = this.props;
+    const { sidebarOpened } = this.state;
 
     return (
-      <Media as={Sidebar.Pushable} at='mobile'>
+      <Media as={Sidebar.Pushable} at="mobile">
         <Sidebar.Pushable>
           <Sidebar.Pusher dimmed={sidebarOpened}>
             <Segment
               inverted
-              textAlign='center'
-              style={{ minHeight: 350, padding: '1em 0em' }}
+              textAlign="center"
+              style={{ minHeight: 350, padding: "1em 0em" }}
               vertical
             >
               <HomepageHeading mobile />
@@ -127,13 +121,13 @@ class MobileContainer extends Component {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Media>
-    )
+    );
   }
 }
 
 MobileContainer.propTypes = {
   children: PropTypes.node,
-}
+};
 
 const ResponsiveContainer = ({ children }) => (
   /* Heads up!
@@ -144,11 +138,11 @@ const ResponsiveContainer = ({ children }) => (
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
-)
+);
 
 ResponsiveContainer.propTypes = {
   children: PropTypes.node,
-}
+};
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
@@ -181,29 +175,27 @@ const HomepageLayout = () => (
       </Grid>
     </Segment> */}
 
-    <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+    <Segment style={{ padding: "0em" }} vertical>
+      <Grid celled="internally" columns="equal" stackable>
+        <Grid.Row textAlign="center">
+          <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+            <Header as="h3" style={{ fontSize: "2em" }}>
               "Awesome"
             </Header>
-            <p style={{ fontSize: '1.33em' }}>independent development, full stack</p>
+            <p style={{ fontSize: "1.33em" }}>
+              independent development, full stack
+            </p>
           </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+          <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+            <Header as="h3" style={{ fontSize: "2em" }}>
               "Blog"
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
-
-            Sharing and listening
-            </p>
+            <p style={{ fontSize: "1.33em" }}>Sharing and listening</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
-
   </ResponsiveContainer>
-)
+);
 
-export default HomepageLayout
+export default HomepageLayout;

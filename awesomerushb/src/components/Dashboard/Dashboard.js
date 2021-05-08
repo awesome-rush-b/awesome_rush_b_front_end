@@ -1,15 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart } from 'victory';
+import React from 'react';
 import {
-    Checkbox,
-    Grid,
-    Icon,
-    Image,
-    Segment,
+    Icon
 } from 'semantic-ui-react'
-import { Header } from '../../components'
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SidebarHeader } from 'react-pro-sidebar';
 import './Dashboard.css'
 import 'react-pro-sidebar/dist/css/styles.css';
 import Editor from './Editor';
@@ -113,7 +106,7 @@ class Dashboard extends React.Component {
                     </ProSidebar>
                 </div>
                 <div className='main' >
-                    <Header />
+                    {/* <Header /> */}
 
                     {/* Overview Page */}
 

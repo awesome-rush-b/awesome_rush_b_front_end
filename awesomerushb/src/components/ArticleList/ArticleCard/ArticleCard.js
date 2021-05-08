@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  Button,
-  Icon,
-  Image,
+  Container,
+  Divider,
   Item,
-  Label,
-  Divider
+  Label
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import Chip from '@material-ui/core/Chip';
@@ -31,32 +29,20 @@ class ArticleCard extends React.Component {
 
   render() {
     return (
-      <div style={{ alignItems: 'center', margin: "90px" }}>
+      <Container>
         <Item.Group>
           <Item>
-            <Item.Image src='https://markpersonal.oss-us-east-1.aliyuncs.com/pic/20210319110853.png' />
+            <Item.Image size='small' src='https://markpersonal.oss-us-east-1.aliyuncs.com/pic/20210319110853.png' />
 
             <Item.Content>
               <Item.Header as='a' onClick={() => this.props.handleArticleDetailShow(this.state.blogId)}>{this.state.title}</Item.Header>
               <Item.Meta>
-                {
-                  this.state.hashTag.map((tag) => (
-                    <Chip
-                      label={"# " + tag.name}
-                      variant="outlined"
-                    />
-                  ))
-                }
-                <div style={{ display: 'flex', margin: '10px 0px' }}>
-                  <div ><span className='cinema' ><span style={{ fontWeight: 'bold' }}>Create Date: </span>{this.state.createDate}</span></div>
-
-                  <div ><span className='cinema' ><span style={{ fontWeight: 'bold' }}>Modify Date:  </span>{this.state.modifyDate}</span> </div>
-                </div>
+                {/* <span className='cinema'>{this.state.createDate}</span>
+                <span /> */}
+                <span className='cinema'>Last Update: {this.state.modifyDate}</span>
               </Item.Meta>
               <Item.Description>
-                <div style={{ height: '105px' }}>
-                  {this.state.content}
-                </div>
+                {this.state.content}
               </Item.Description>
               <Item.Extra>
                 <Label icon='thumbs up outline' content='25' />
@@ -64,9 +50,10 @@ class ArticleCard extends React.Component {
               </Item.Extra>
             </Item.Content>
           </Item>
+          <Divider />
         </Item.Group>
 
-      </div>
+      </Container>
     );
   }
 }

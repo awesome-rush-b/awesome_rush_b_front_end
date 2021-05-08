@@ -53,6 +53,7 @@ export default class Editor extends React.Component {
         this.state = {
             editorState: BraftEditor.createEditorState(),
             context: '<p></p>',
+            dropdownOptions: [],
             currentValues: [],
             title: null
         };
@@ -83,23 +84,20 @@ export default class Editor extends React.Component {
             })
                 .then(resp => resp.json())
                 .then(data => {
-                    // this.setState({ allTags: data.resultData })
-                    // return data.resultData;
                     this.preTagOption(data.resultData);
                 })
         }
     }
     preTagOption = (tags) => {
+
         const tagOptions = tags.map((tag) => ({
-            'key': tag.name,
-            'text': tag.name,
-            'value': tag.tagId
+            key: tag.name,
+            text: tag.name,
+            value: tag.tagId
         }))
         console.log(tagOptions);
 
-        this.setState({ currentValues: tagOptions }, () => {
-            console.log(this.state.currentValues)
-        })
+        this.setState({ dropdownOptions: tagOptions })
     }
 
     handleAddition = (e, { value }) => {
@@ -207,7 +205,7 @@ export default class Editor extends React.Component {
                     <Input transparent fluid size='huge' placeholder='Text your title' onChange={this.handleTitleChange} />
                     <br />
                     <Dropdown
-                        options={this.state.options}
+                        options={this.state.dropdownOptions}
                         placeholder='Choose HashTage'
                         search
                         selection

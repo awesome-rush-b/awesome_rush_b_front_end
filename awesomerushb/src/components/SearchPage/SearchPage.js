@@ -1,19 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Header } from '../../components'
 import SearchBox from './SearchBox/SearchBox'
 import SearchResShowCase from './SearchResShowCase/SearchResShowCase'
 import {
-    Button,
-    TextField,
-    Avatar,
-    CssBaseline,
-    FormControlLabel,
-    Checkbox,
-    Link,
-    Grid,
-    Typography,
-    Container,
-    makeStyles
+    Container
 } from '@material-ui/core';
 
 const jwtToken = localStorage.token;

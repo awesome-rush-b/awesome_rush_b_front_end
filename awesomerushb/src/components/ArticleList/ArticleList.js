@@ -1,21 +1,9 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { withRouter } from "react-router-dom";
+import React from 'react';
 import { Header } from '../../components/'
 import ArticleCard from './ArticleCard/ArticleCard'
 import ArticleDetail from './AtricleDetail/ArticleDetail'
 import {
-    Button,
-    TextField,
-    Avatar,
-    CssBaseline,
-    FormControlLabel,
-    Checkbox,
-    Link,
-    Grid,
-    Typography,
-    Container,
-    makeStyles
+    Container
 } from '@material-ui/core';
 import Footer from '../Footer/Footer'
 
