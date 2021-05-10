@@ -9,7 +9,7 @@
 // import MainPage from '../components/MainPage/MainPage';
 // import SearchPage from '../components/SearchPage/SearchPage';
 
-import { MainPage, ArticleList, Login, Register, Dashboard, SearchPage } from '../components/loadComponent';
+import { MainPage, ArticleList, Login, Register, Dashboard, SearchPage, ArticleDetail } from '../components/loadComponent';
 
 const routes = [{
     title:'Main Page',
@@ -35,6 +35,11 @@ const routes = [{
     title:'Search Page',
     path: '/searchPage',
     component: SearchPage
+},{
+    title:'Search Page',
+    path: '/articleDetail/:id',
+    component: ArticleDetail
+    
 }];
 
 export default routes
