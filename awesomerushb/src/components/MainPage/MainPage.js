@@ -48,7 +48,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <FirstEntryAnimation /> */}
+        <FirstEntryAnimation />
         <Container maxWidth="lg">
           <div>
             <Header />
