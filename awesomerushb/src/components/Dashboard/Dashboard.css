@@ -8,15 +8,22 @@
       text-overflow: ellipsis;
   }
   .main{
-    padding: 24px;
-    flex-grow: 1;
+    margin:1% 10%;
+    padding:24px;
+    /* flex-grow: 1; */
   }
   .editor{
-      margin: 1% 10%;
-      width: 80%;
+      width:1300px;
     border:3px solid #000;
   }
   .title{
-    margin: 1% 10%;
-    width: 80%;
+    width: 1300px;
+  }
+  .hashTagDropdown{
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+  .blogSumbit{
+    margin:100px 20px;
+    text-align: center;
   }

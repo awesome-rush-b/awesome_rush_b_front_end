@@ -38,7 +38,7 @@ class MainPage extends React.Component {
   };
 
   handleArticleDetailShow = (blogId) => {
-    this.props.history.push('/articleDetail/'+blogId)
+    this.props.history.push('/articleDetail/' + blogId)
   };
 
   componentDidMount() {

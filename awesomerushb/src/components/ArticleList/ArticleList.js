@@ -10,7 +10,6 @@ class ArticleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // open:false,
       allBlogs: [],
       isDetailed: false,
       curBlogId: null,
@@ -40,10 +39,7 @@ class ArticleList extends React.Component {
   };
 
   handleArticleDetailShow = (blogId) => {
-    // this.setState({ isDetailed: true, curBlogId: blogId }, () => {
-    //   console.log("blogId", this.state.curBlogId);
-    // });
-    this.props.history.push('/articleDetail/'+blogId)
+    this.props.history.push('/articleDetail/' + blogId)
   };
 
   componentDidMount() {

@@ -36,7 +36,7 @@ class App extends React.Component {
         .then((resp) => resp.json())
         .then((data) => {
           if (!data.success) {
-            // this.setState({open: true})
+            // this.setState({ open: true })
           }
         });
     }
