@@ -5,6 +5,8 @@ import ArticleCard from "../ArticleList/ArticleCard/ArticleCard";
 import { Container } from "@material-ui/core";
 import Footer from "../Footer/Footer";
 import FirstEntryAnimation from "../FirstEntryAnimation/FirstEntryAnimation";
+import MarkdownIt from "markdown-it";
+import { convertMdToHtmlString } from "../Utils/convertMdToHtmlString";
 
 const getAllBlogsUrl = "http://dev.awesomerushb.com/api/blogs";
 
@@ -14,6 +16,8 @@ class MainPage extends React.Component {
     this.state = {
       // open:false,
       allBlogs: [],
+      isDetailed: false,
+      curBlogId: null,
     };
   }
 
@@ -32,6 +36,11 @@ class MainPage extends React.Component {
         });
       });
   };
+
+  handleArticleDetailShow = (blogId) => {
+    this.props.history.push('/articleDetail/' + blogId)
+  };
+
   componentDidMount() {
     this.getAllBlogs(getAllBlogsUrl);
   }
@@ -47,12 +56,12 @@ class MainPage extends React.Component {
             <div>
               {this.state.allBlogs.map((blog) => (
                 <ArticleCard
-                  key={blog.blogId}
+                  blogId={blog.blogId}
                   title={blog.title}
-                  content={blog.content}
                   createDate={blog.createDate}
                   modifyDate={blog.modifyDate}
                   hashTag={blog.hashTag}
+                  handleArticleDetailShow={this.handleArticleDetailShow}
                 />
               ))}
             </div>

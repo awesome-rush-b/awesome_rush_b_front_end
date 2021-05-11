@@ -5,13 +5,8 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {
   Button,
   IconButton,
-  makeStyles,
-  Toolbar,
-  Typography,
-  Link,
-  Hidden,
+  makeStyles
 } from "@material-ui/core";
-import PropTypes from "prop-types";
 
 const options = [
   "None",

@@ -5,10 +5,13 @@ import MdEditor from 'react-markdown-editor-lite'
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 import './Dashboard.css'
-import { Dropdown, Input, Button } from 'semantic-ui-react'
+import { Dropdown, Input, Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 const getAllTagsUrl = 'http://dev.awesomerushb.com/api/tags';
+const getUser = 'http://dev.awesomerushb.com/api/user?username=';
+const createBlog = 'http://dev.awesomerushb.com/api/blog';
 const jwtToken = localStorage.token;
+const username = localStorage.username;
 
 
 
@@ -18,25 +21,24 @@ export default class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // editorState: BraftEditor.createEditorState(),
             context: '',
             dropdownOptions: [],
             currentValues: [],
-            title: null
+            title: null,
+            userId: "",
+            submitBlogModal: false
         };
     }
 
 
     async componentDidMount() {
         this.getAllTags(jwtToken, getAllTagsUrl);
-        this.isLivinig = true
-        setTimeout(this.setEditorContentAsync, 3000)
-
     }
 
     componentWillUnmount() {
-        this.isLivinig = false
     }
+
+
     getAllTags = (token, getAllTagsUrl) => {
         if (token) {
             return fetch(getAllTagsUrl, {
@@ -45,7 +47,8 @@ export default class Editor extends React.Component {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                     'Authorization': `Bearer ${token}`
-                }
+                },
+
             })
                 .then(resp => resp.json())
                 .then(data => {
@@ -54,8 +57,42 @@ export default class Editor extends React.Component {
         }
     }
 
-    preTagOption = (tags) => {
+    getUser = (token, getUser) => {
+        if (token) {
+            return fetch(getUser + username, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    this.setState({ userId: data.resultData.userId });
+                })
+        }
+    }
 
+    handleCreateBlog = (token, createBlog, blog) => {
+        if (token) {
+            return fetch(createBlog, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(blog)
+            }).then(resp => resp.json()).then(data => {
+                console.log(data);
+                this.setState({ submitBlogModal: true })
+            })
+        }
+
+    }
+
+    preTagOption = (tags) => {
         const tagOptions = tags.map((tag) => ({
             key: tag.name,
             text: tag.name,
@@ -81,14 +118,30 @@ export default class Editor extends React.Component {
     handleEditorChange = ({ text }) => {
         this.setState({ context: text })
     }
-    handleBlogSubmit = () => {
+    handleBlogSubmit = async () => {
+        await this.getUser(jwtToken, getUser);
+        let hashTag = [];
+        this.state.currentValues.map((item) => {
+            hashTag.push({ "name": item });
+        })
+        const blog = {
+            "authorId": this.state.userId,
+            "content": this.state.context,
+            "hashTag": hashTag,
+            "status": "released",
+            "title": this.state.title
+        }
+        // console.log(JSON.stringify(blog))
+        this.handleCreateBlog(jwtToken, createBlog, blog);
 
     }
 
 
+
+
     render() {
         const mdParser = new MarkdownIt();
-        const { editorState, context, currentValues, title } = this.state
+        const { editorState, context, currentValues, title, submitBlogModal } = this.state
         const excludeControls = ['media', 'fullscreen']
 
         return (
@@ -121,13 +174,35 @@ export default class Editor extends React.Component {
                     </div>
                 </div>
 
-                <h5>Test Output</h5>
+                {/* <h5>Test Output</h5>
                 <div className="output-content">{title}</div>
                 <div className="output-content">{currentValues}</div>
-                <div className="output-content">{context}</div>
+                <div className="output-content">{context}</div> */}
                 <div className='blogSumbit'>
                     <Button secondary onClick={this.handleBlogSubmit}>Submit</Button>
                 </div>
+                <Modal
+                    basic
+                    open={submitBlogModal}
+                    size='small'
+                >
+                    <Header icon>
+                        <Icon name='check' />
+                        Create New Blog Successfully
+                    </Header>
+                    <Modal.Actions>
+                        <div style={{ textAlign: "center" }}>
+                            <Button basic color='orange' inverted onClick={() => this.setState({ submitBlogModal: false })}>
+                                Ok
+                        </Button>
+                        </div>
+                    </Modal.Actions>
+                </Modal>
+
+
+
+
+
             </div>
 
         )

@@ -26,8 +26,9 @@
     height: 57px;
     left: 29px;
     top: 36px;
-
     background: #1C1C1C;
+    position:absolute;
+    z-index:-1;
 }
 .logo_slice{
     position: absolute;
@@ -41,7 +42,7 @@
     width: 155px;
     height: 31px;
     left: 95px;
-    top: 55px;
+    top: 54px;
 
     font-family: Libre Baskerville;
     font-style: normal;
