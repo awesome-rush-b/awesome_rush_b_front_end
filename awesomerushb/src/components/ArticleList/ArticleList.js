@@ -1,10 +1,8 @@
 import React from "react";
 import { Header } from "../../components/";
 import ArticleCard from "./ArticleCard/ArticleCard";
-import ArticleDetail from "./AtricleDetail/ArticleDetail";
 import { Container } from "@material-ui/core";
 import Footer from "../Footer/Footer";
-import { convertMdToHtmlString } from "../Utils/convertMdToHtmlString";
 
 const getAllBlogsUrl = "http://dev.awesomerushb.com/api/blogs";
 

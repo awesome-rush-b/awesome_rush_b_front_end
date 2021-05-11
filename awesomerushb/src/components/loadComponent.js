@@ -37,6 +37,11 @@ const ArticleDetail = Loadable({
   loading: Loading,
 });
 
+const Page404 = Loadable({
+  loader: () => import("./ErrorPages/Page404"),
+  loading: Loading,
+});
+
 export {
   MainPage,
   ArticleList,
@@ -45,4 +50,5 @@ export {
   Dashboard,
   SearchPage,
   ArticleDetail,
+  Page404
 };

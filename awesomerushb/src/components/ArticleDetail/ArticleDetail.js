@@ -6,6 +6,8 @@ import Chip from "@material-ui/core/Chip";
 import { convertMdToHtmlString } from "../Utils/convertMdToHtmlString";
 
 const getBlogUrl = "http://dev.awesomerushb.com/api/blog/id/";
+const blogCountPlusOneUrl =
+  "http://dev.awesomerushb.com/api/blog/blogViewPlusOne/id/";
 
 class ArticleDetail extends React.Component {
   constructor(props) {
@@ -19,6 +21,17 @@ class ArticleDetail extends React.Component {
 
   componentDidMount = () => {
     this.getBlog(this.state.blogId);
+    fetch(blogCountPlusOneUrl + this.state.blogId, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data.resultData);
+      });
   };
 
   getBlog = (blogId) => {

@@ -7,7 +7,6 @@ import Footer from "../Footer/Footer";
 import FirstEntryAnimation from "../FirstEntryAnimation/FirstEntryAnimation";
 import MarkdownIt from "markdown-it";
 import { convertMdToHtmlString } from "../Utils/convertMdToHtmlString";
-import ArticleDetail from "../ArticleList/AtricleDetail/ArticleDetail";
 
 const getAllBlogsUrl = "http://dev.awesomerushb.com/api/blogs";
 
